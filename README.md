@@ -1,1184 +1,237 @@
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Élégance Accessoires | Boutique Premium</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
-    }
-
-    body {
-      background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
-      color: #0f172a;
-      padding-bottom: 2rem;
-      overflow-x: hidden;
-    }
-
-    /* Animation de chargement */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes shimmer {
-      0% {
-        background-position: -200% 0;
-      }
-      100% {
-        background-position: 200% 0;
-      }
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    @keyframes rotate {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Header moderne avec animation */
-    .header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0.9rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      animation: slideInLeft 0.6s ease;
-    }
-
-    .logo {
-      font-size: 1.7rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #1e293b, #3b82f6, #8b5cf6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.3px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .logo span {
-      font-size: 1.8rem;
-      animation: bounce 2s ease infinite;
-      display: inline-block;
-    }
-
-    /* Boutons contact dans le header */
-    .contact-buttons {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-      animation: slideInRight 0.6s ease;
-    }
-
-    .contact-header-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid #e2e8f0;
-      background: white;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-header-btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .contact-header-btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .contact-header-btn.whatsapp {
-      background: #25D366;
-      color: white;
-      border-color: #25D366;
-    }
-
-    .contact-header-btn.whatsapp:hover {
-      background: #128C7E;
-      transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-    }
-
-    .contact-header-btn.facebook {
-      background: #1877F2;
-      color: white;
-      border-color: #1877F2;
-    }
-
-    .contact-header-btn.facebook:hover {
-      background: #0d5cb6;
-      transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 8px 20px rgba(24, 119, 242, 0.3);
-    }
-
-    .contact-header-btn.phone {
-      background: #ef4444;
-      color: white;
-      border-color: #ef4444;
-    }
-
-    .contact-header-btn.phone:hover {
-      background: #dc2626;
-      transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
-    }
-
-    .cart-icon {
-      position: relative;
-      cursor: pointer;
-      background: #ffffff;
-      padding: 0.6rem 1.3rem;
-      border-radius: 60px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      border: 1px solid #e2e8f0;
-      animation: slideInRight 0.6s ease;
-    }
-
-    .cart-icon:hover {
-      background: #f8fafc;
-      transform: scale(1.05);
-      border-color: #cbd5e1;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-    }
-
-    .cart-count {
-      background: #ef4444;
-      color: white;
-      border-radius: 40px;
-      padding: 0px 9px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      margin-left: 4px;
-      transition: all 0.3s ease;
-    }
-
-    .cart-count.pulse {
-      animation: pulse 0.5s ease;
-    }
-
-    /* Grille raffinée avec animations */
-    .products-container {
-      max-width: 1350px;
-      margin: 2.5rem auto;
-      padding: 0 1.8rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: #ffffff;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
-      border: 1px solid rgba(203, 213, 225, 0.3);
-      display: flex;
-      flex-direction: column;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease forwards;
-      position: relative;
-    }
-
-    .product-card:nth-child(1) { animation-delay: 0.05s; }
-    .product-card:nth-child(2) { animation-delay: 0.1s; }
-    .product-card:nth-child(3) { animation-delay: 0.15s; }
-    .product-card:nth-child(4) { animation-delay: 0.2s; }
-    .product-card:nth-child(5) { animation-delay: 0.25s; }
-    .product-card:nth-child(6) { animation-delay: 0.3s; }
-    .product-card:nth-child(7) { animation-delay: 0.35s; }
-    .product-card:nth-child(8) { animation-delay: 0.4s; }
-    .product-card:nth-child(9) { animation-delay: 0.45s; }
-    .product-card:nth-child(10) { animation-delay: 0.5s; }
-    .product-card:nth-child(11) { animation-delay: 0.55s; }
-    .product-card:nth-child(12) { animation-delay: 0.6s; }
-    .product-card:nth-child(13) { animation-delay: 0.65s; }
-    .product-card:nth-child(14) { animation-delay: 0.7s; }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s ease;
-      pointer-events: none;
-    }
-
-    .product-card:hover::before {
-      left: 100%;
-    }
-
-    .product-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.25);
-      border-color: #cbd5e1;
-    }
-
-    .product-img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      background: linear-gradient(145deg, #eef2ff, #e2e8f0);
-      display: block;
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .product-card:hover .product-img {
-      transform: scale(1.08);
-    }
-
-    .product-info {
-      padding: 1.4rem 1.2rem 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-      color: #0f172a;
-      transition: color 0.3s ease;
-    }
-
-    .product-card:hover .product-title {
-      color: #3b82f6;
-    }
-
-    .product-price {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #2563eb;
-      margin: 0.5rem 0 0.8rem;
-      letter-spacing: -0.3px;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover .product-price {
-      transform: scale(1.05);
-    }
-
-    .product-price::after {
-      content: " AR";
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #475569;
-      margin-left: 3px;
-    }
-
-    .add-to-cart {
-      background: #0f172a;
-      color: white;
-      border: none;
-      width: 100%;
-      padding: 12px 0;
-      border-radius: 44px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      margin-top: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .add-to-cart::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(59, 130, 246, 0.5);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .add-to-cart:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .add-to-cart:hover {
-      background: #1e293b;
-      transform: scale(1.02);
-      gap: 12px;
-    }
-
-    .add-to-cart:active {
-      transform: scale(0.98);
-    }
-
-    /* Panier latéral premium */
-    .cart-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(6px);
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.3s ease;
-      z-index: 200;
-    }
-
-    .cart-overlay.open {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .cart-sidebar {
-      position: fixed;
-      right: 0;
-      top: 0;
-      width: 100%;
-      max-width: 500px;
-      height: 100%;
-      background: #ffffff;
-      box-shadow: -12px 0 35px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 201;
-      border-radius: 28px 0 0 28px;
-      overflow: hidden;
-    }
-
-    .cart-overlay.open .cart-sidebar {
-      transform: translateX(0);
-    }
-
-    .cart-header {
-      padding: 1.4rem 1.8rem;
-      border-bottom: 2px solid #f1f5f9;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fff;
-    }
-
-    .cart-header h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(145deg, #1e293b, #334155);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .close-cart {
-      background: #f1f5f9;
-      border: none;
-      font-size: 1.6rem;
-      cursor: pointer;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
-
-    .close-cart:hover {
-      background: #e2e8f0;
-      transform: rotate(90deg);
-    }
-
-    .cart-items {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.2rem 1.5rem;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.6rem;
-      border-bottom: 1px solid #eef2ff;
-      padding-bottom: 1.2rem;
-      animation: slideInLeft 0.3s ease;
-    }
-
-    .cart-item-img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 20px;
-      background: #eef2ff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .cart-item-img:hover {
-      transform: scale(1.05);
-    }
-
-    .cart-item-details {
-      flex: 1;
-    }
-
-    .cart-item-title {
-      font-weight: 700;
-      font-size: 1rem;
-    }
-
-    .cart-item-price {
-      color: #3b82f6;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .item-quantity {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .item-quantity button {
-      background: #f1f5f9;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 40px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .item-quantity button:hover {
-      background: #e2e8f0;
-      transform: scale(1.1);
-    }
-
-    .item-quantity button:active {
-      transform: scale(0.95);
-    }
-
-    .remove-item {
-      background: #fff0f0;
-      color: #dc2626;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-left: 4px;
-      transition: all 0.2s ease;
-    }
-
-    .remove-item:hover {
-      background: #fee2e2;
-      transform: scale(1.05);
-    }
-
-    .cart-total {
-      padding: 1.3rem 1.8rem 1.8rem;
-      border-top: 2px solid #eef2ff;
-      background: #ffffff;
-    }
-
-    .total-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 1.2rem;
-    }
-
-    .checkout-btn {
-      background: linear-gradient(105deg, #10b981, #059669);
-      color: white;
-      border: none;
-      width: 100%;
-      padding: 15px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .checkout-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .checkout-btn:hover::before {
-      left: 100%;
-    }
-
-    .checkout-btn:hover {
-      filter: brightness(1.04);
-      transform: scale(1.02);
-    }
-
-    .empty-cart {
-      text-align: center;
-      color: #64748b;
-      margin-top: 3.5rem;
-      font-weight: 500;
-    }
-
-    /* Modal Contact */
-    .contact-modal {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 250;
-    }
-
-    .contact-fab {
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: none;
-      font-size: 28px;
-    }
-
-    .contact-fab:hover {
-      transform: scale(1.15) rotate(10deg);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.3);
-    }
-
-    .contact-popup {
-      position: absolute;
-      bottom: 80px;
-      right: 0;
-      background: white;
-      border-radius: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      width: 280px;
-      padding: 20px;
-      display: none;
-      animation: fadeInUp 0.3s ease;
-    }
-
-    .contact-popup.show {
-      display: block;
-    }
-
-    .contact-popup h3 {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-      color: #1e293b;
-      text-align: center;
-    }
-
-    .contact-popup a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      margin: 8px 0;
-      border-radius: 60px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      color: white;
-    }
-
-    .contact-popup .whatsapp-link {
-      background: #25D366;
-    }
-
-    .contact-popup .whatsapp-link:hover {
-      background: #128C7E;
-      transform: translateX(8px);
-    }
-
-    .contact-popup .facebook-link {
-      background: #1877F2;
-    }
-
-    .contact-popup .facebook-link:hover {
-      background: #0d5cb6;
-      transform: translateX(8px);
-    }
-
-    .contact-popup .phone-link {
-      background: #ef4444;
-    }
-
-    .contact-popup .phone-link:hover {
-      background: #dc2626;
-      transform: translateX(8px);
-    }
-
-    /* Toast animation */
-    .toast-msg {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%) scale(0.9);
-      background: #0f172a;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 60px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      z-index: 300;
-      opacity: 0;
-      transition: 0.3s ease;
-      pointer-events: none;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    /* Particules d'animation */
-    .particle {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      animation: particleFloat 1s ease-out forwards;
-    }
-
-    @keyframes particleFloat {
-      0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-50px) scale(0);
-      }
-    }
-
-    /* Scroll reveal animation */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .scroll-reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 860px) {
-      .contact-buttons {
-        order: 3;
-        width: 100%;
-        justify-content: center;
-      }
-      .products-container {
-        gap: 1rem;
-        padding: 0 1rem;
-      }
-      .header {
-        padding: 0.7rem 1.2rem;
-      }
-      .cart-sidebar {
-        max-width: 100%;
-        border-radius: 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robe & Élégance - Boutique en ligne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{background:#fef9f5;color:#2d2a2a;}
+        nav{background:#fff;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+        .logo h1{font-family:'Playfair Display',serif;color:#c44536;font-size:1.5rem;}
+        .logo span{font-size:0.7rem;color:#a35c4a;}
+        .nav-links{display:flex;gap:1.5rem;list-style:none;}
+        .nav-links a{text-decoration:none;color:#3e2c28;font-weight:500;}
+        .nav-links a:hover,.nav-links a.active{color:#c44536;border-bottom:2px solid #c44536;}
+        .cart-icon{position:relative;cursor:pointer;}
+        .cart-count{position:absolute;top:-8px;right:-12px;background:#c44536;color:white;border-radius:50%;padding:2px 6px;font-size:0.7rem;}
+        .page{display:none;padding:2rem;max-width:1300px;margin:0 auto;}
+        .active-page{display:block;}
+        .hero{background:linear-gradient(105deg,#fff1e8,#ffe6db);border-radius:36px;padding:2rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:2rem;}
+        .hero-text h2{font-size:2rem;font-family:'Playfair Display',serif;}
+        .btn{background:#c44536;color:white;padding:10px 25px;border:none;border-radius:40px;cursor:pointer;font-weight:600;}
+        .btn:hover{background:#a23426;}
+        .section-title{font-size:1.8rem;margin:2rem 0 1rem;border-left:5px solid #c44536;padding-left:1rem;font-family:'Playfair Display',serif;}
+        .grid-produits{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+        .carte-robe{background:white;border-radius:20px;overflow:hidden;text-align:center;padding-bottom:1rem;box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+        .carte-robe img{width:100%;height:280px;object-fit:cover;}
+        .carte-robe h3{margin:0.8rem 0 0.2rem;}
+        .prix{color:#c44536;font-weight:700;font-size:1.2rem;}
+        .btn-acheter{background:#2b211e;color:white;border:none;padding:8px 20px;border-radius:40px;margin-top:8px;cursor:pointer;}
+        .btn-acheter:hover{background:#c44536;}
+        .cart-sidebar{position:fixed;top:0;right:-400px;width:380px;height:100%;background:white;box-shadow:-2px 0 20px rgba(0,0,0,0.1);z-index:1000;transition:0.3s;padding:1.5rem;display:flex;flex-direction:column;}
+        .cart-sidebar.open{right:0;}
+        .cart-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:1rem;}
+        .cart-items{flex:1;overflow-y:auto;margin:1rem 0;}
+        .cart-item{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid #eee;}
+        .cart-item-info{flex:1;}
+        .cart-item-title{font-weight:500;}
+        .cart-item-price{color:#c44536;font-size:0.9rem;}
+        .remove-item{background:none;border:none;color:#999;cursor:pointer;font-size:1.2rem;}
+        .remove-item:hover{color:#c44536;}
+        .cart-total{font-weight:700;font-size:1.3rem;border-top:2px solid #ddd;padding-top:1rem;text-align:right;}
+        .checkout-btn{background:#c44536;color:white;border:none;padding:12px;border-radius:40px;margin-top:1rem;cursor:pointer;width:100%;font-weight:600;}
+        .whatsapp-btn{background:#25D366;color:white;border:none;padding:12px;border-radius:40px;margin-top:0.5rem;cursor:pointer;width:100%;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;}
+        .whatsapp-btn:hover{background:#128C7E;}
+        .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;display:none;}
+        .toast-msg{position:fixed;bottom:20px;right:20px;background:#2b211e;color:white;padding:10px 20px;border-radius:40px;opacity:0;transition:0.2s;z-index:1001;}
+        footer{text-align:center;padding:2rem;background:#f3eae5;margin-top:2rem;font-size:0.8rem;}
+        .contact-bar{background:#fff;padding:0.8rem 2rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;border-top:1px solid #f0e0d8;border-bottom:1px solid #f0e0d8;}
+        .contact-bar a{text-decoration:none;color:#3e2c28;font-weight:500;display:flex;align-items:center;gap:8px;}
+        .contact-bar a i{font-size:1.2rem;}
+        .contact-bar a.whatsapp{color:#25D366;}
+        .contact-bar a.phone{color:#c44536;}
+        .contact-bar a:hover{opacity:0.8;}
+        @media(max-width:700px){nav{flex-direction:column;gap:0.5rem;}.cart-sidebar{width:100%;right:-100%;}.contact-bar{gap:1rem;font-size:0.8rem;}}
+    </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="logo">
-    <span>✨</span> ÉLÉGANCE ACCESSOIRES
-  </div>
-  <div class="contact-buttons">
-    <a href="https://wa.me/261373436938?text=Bonjour%20je%20suis%20intéressé%20par%20vos%20produits" target="_blank" class="contact-header-btn whatsapp">
-      📱 WhatsApp
+<nav>
+    <div class="logo"><h1>Robe & Élégance <span>✧ robes d'exception</span></h1></div>
+    <ul class="nav-links">
+        <li><a href="#" data-page="accueil" class="nav-link active">Accueil</a></li>
+        <li><a href="#" data-page="produits" class="nav-link">Produits</a></li>
+        <li><a href="#" data-page="offre" class="nav-link">Offre</a></li>
+        <li><a href="#" data-page="apropos" class="nav-link">À propos</a></li>
+        <li><a href="#" data-page="contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag fa-lg"></i><span class="cart-count" id="cartCount">0</span></div>
+</nav>
+
+<!-- BARRE DE CONTACT FIXE (WhatsApp + Téléphone) -->
+<div class="contact-bar">
+    <a href="https://wa.me/261341234567?text=Bonjour%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20robes" target="_blank" class="whatsapp">
+        <i class="fab fa-whatsapp"></i> WhatsApp : +261 34 12 345 67
     </a>
-    <a href="https://www.facebook.com/profile.php?id=Juvence Rjn" target="_blank" class="contact-header-btn facebook">
-      📘 Facebook
+    <a href="tel:+261341234567" class="phone">
+        <i class="fas fa-phone-alt"></i> Téléphone : +261 34 12 345 67
     </a>
-    <a href="tel:+261383146589" class="contact-header-btn phone">
-      📞 Appeler
-    </a>
-  </div>
-  <div class="cart-icon" id="cartIcon">
-    🛒 Mon panier
-    <span class="cart-count" id="cartCount">0</span>
-  </div>
 </div>
 
-<div class="products-container" id="productsContainer"></div>
-
-<!-- Panneau latéral panier -->
-<div class="cart-overlay" id="cartOverlay">
-  <div class="cart-sidebar">
-    <div class="cart-header">
-      <h2>🛍️ Votre panier</h2>
-      <button class="close-cart" id="closeCartBtn">✕</button>
-    </div>
-    <div class="cart-items" id="cartItemsList">
-      <div class="empty-cart">🛒 Panier vide, ajoutez des articles</div>
-    </div>
-    <div class="cart-total" id="cartTotalSection">
-      <div class="total-row">
-        <span>Total TTC</span>
-        <span id="cartTotalPrice">0 AR</span>
-      </div>
-      <button class="checkout-btn" id="checkoutBtn">✅ Valider la commande</button>
-    </div>
-  </div>
+<!-- PAGES -->
+<div id="accueil" class="page active-page">
+    <div class="hero"><div class="hero-text"><h2>L'élégance au quotidien</h2><p>Livraison offerte dès 120 000 Ar.</p><button class="btn" id="heroShopBtn">Voir les produits →</button></div>
+    <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=300&h=350&fit=crop" style="width:260px;border-radius:28px;"></div>
+    <div class="section-title">✨ Nos coups de cœur</div><div class="grid-produits" id="accueil-highlights"></div>
 </div>
 
-<!-- Modal Contact Flottant -->
-<div class="contact-modal">
-  <button class="contact-fab" id="contactFabBtn">
-    💬
-  </button>
-  <div class="contact-popup" id="contactPopup">
-    <h3>📞 Contactez-nous</h3>
-    <a href="https://wa.me/261373436938?text=Bonjour%20je%20suis%20intéressé%20par%20vos%20produits" target="_blank" class="whatsapp-link">
-      💬 WhatsApp
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=Juvence Rjn" target="_blank" class="facebook-link">
-      📘 Facebook
-    </a>
-    <a href="tel:+261383146589" class="phone-link">
-      📞 Téléphone
-    </a>
-  </div>
+<div id="produits" class="page"><div class="section-title">👗 Collection Printemps-Été</div><div class="grid-produits" id="all-products-grid"></div></div>
+
+<div id="offre" class="page"><div class="offre-box" style="background:#f3e1d8;border-radius:48px;padding:2rem;text-align:center;"><span style="background:#c44536;color:white;padding:5px 15px;border-radius:60px;">🎁 OFFRE EXCLUSIVE</span><h2 style="margin:1rem 0;">-20% sur votre première commande</h2><p>Code: <strong>BIENVENUE20</strong></p><button class="btn" id="offreShopBtn">Profiter →</button></div>
+<div style="margin-top:2rem;"><div class="section-title">🔥 Offres flash</div><div class="grid-produits" id="offre-produits"></div></div></div>
+
+<div id="apropos" class="page"><div style="display:flex;gap:2rem;flex-wrap:wrap;background:white;padding:2rem;border-radius:32px;"><div><h2 style="font-family:'Playfair Display';">Notre histoire</h2><p>Robe & Élégance, une passion pour la mode responsable. Livraison Madagascar.</p><p>✨ Qualité premium<br>✨ Éco-emballages</p><p><i class="fab fa-whatsapp" style="color:#25D366;"></i> Contactez-nous sur WhatsApp pour toute question !</p></div>
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=250&fit=crop" style="border-radius:32px;width:100%;max-width:300px;"></div></div>
+
+<div id="contact" class="page"><div class="section-title">📬 Contactez-nous</div><div class="form-contact" style="background:white;padding:2rem;border-radius:32px;max-width:600px;">
+    <form id="contactForm"><input type="text" id="nom" placeholder="Nom" style="width:100%;padding:12px;margin-bottom:1rem;border-radius:40px;border:1px solid #e2cfc7;"><input type="email" id="email" placeholder="Email" style="width:100%;padding:12px;margin-bottom:1rem;border-radius:40px;border:1px solid #e2cfc7;"><textarea id="message" rows="3" placeholder="Message" style="width:100%;padding:12px;margin-bottom:1rem;border-radius:20px;border:1px solid #e2cfc7;"></textarea><button type="submit" class="btn">Envoyer</button></form>
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid #eee;text-align:center;">
+        <p><strong>Ou contactez-nous directement :</strong></p>
+        <a href="https://wa.me/261341234567?text=Bonjour%20je%20souhaite%20commander%20une%20robe" target="_blank" style="display:inline-block;background:#25D366;color:white;padding:10px 20px;border-radius:40px;margin:0.5rem;text-decoration:none;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="tel:+261341234567" style="display:inline-block;background:#c44536;color:white;padding:10px 20px;border-radius:40px;margin:0.5rem;text-decoration:none;"><i class="fas fa-phone-alt"></i> Appeler</a>
+    </div>
+</div></div>
+
+<!-- PANIER LATERAL -->
+<div class="overlay" id="overlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header"><h3>Mon Panier</h3><i class="fas fa-times" id="closeCart" style="cursor:pointer;font-size:1.3rem;"></i></div>
+    <div class="cart-items" id="cartItems"><p style="text-align:center;color:#999;">Votre panier est vide</p></div>
+    <div class="cart-total" id="cartTotal">Total: 0 Ar</div>
+    <button class="checkout-btn" id="checkoutBtn">📦 Valider la commande</button>
+    <button class="whatsapp-btn" id="whatsappOrderBtn"><i class="fab fa-whatsapp"></i> Commander via WhatsApp</button>
 </div>
 
+<footer>© 2026 Robes & Élégance — Livraison Madagascar 48h-72h — <i class="fab fa-whatsapp"></i> +261 34 12 345 67</footer>
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-  // ---------- CATALOGUE PRODUITS ----------
-  const products = [
-    { id: 1, name: "Montre Connectée", price: 70000, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 2, name: "Air Jordan High", price: 120000, image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 3, name: "Casque Bluetooth Pro", price: 30000, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 4, name: "Sac à Dos Urbain", price: 65000, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 5, name: "Lunettes Style Icon", price: 160000, image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 6, name: "Écouteurs Bluetooth", price: 25000, image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 7, name: "Robe Élégante", price: 40000, image: "https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 8, name: "Escarpins Luxe", price: 60000, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 9, name: "Maillot Football", price: 40000, image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 10, name: "Tenis", price: 40000, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 11, name: "Jogging Confort", price: 45000, image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 12, name: "Collier Argent", price: 65000, image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 13, name: "Sac à main", price: 25000, image: "https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=400&h=300&fit=crop&q=80&fm=jpg" },
-    { id: 14, name: "Combinaison Chic", price: 70000, image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&h=300&fit=crop&q=80&fm=jpg" }
-  ];
+// Catalogue produits (prix en Ariary)
+const robes = [
+    { id: 1, nom: "Robe Flore Jardin", prixAr: 132000, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=500&fit=crop", highlight: true, offre: true },
+    { id: 2, nom: "Robe Soirée Lunée", prixAr: 120000, image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=400&h=500&fit=crop", highlight: false, offre: true },
+    { id: 3, nom: "Robe Été", prixAr: 96000, image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=500&fit=crop", highlight: true, offre: false },
+    { id: 4, nom: "Robe Cachemire", prixAr: 135000, image: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&h=500&fit=crop", highlight: false, offre: false },
+    { id: 5, nom: "Robe Collée", prixAr: 100000, image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&h=500&fit=crop", highlight: true, offre: true },
+    { id: 6, nom: "Robe Maxi Vintage", prixAr: 112000, image: "https://images.unsplash.com/photo-1495385794356-15371f348c31?w=400&h=500&fit=crop", highlight: false, offre: false },
+    { id: 7, nom: "Robe Chic Plissée", prixAr: 122000, image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400&h=500&fit=crop", highlight: false, offre: true }
+];
 
-  let cart = [];
+let panier = JSON.parse(localStorage.getItem('panier')) || [];
 
-  // Créer des particules d'animation
-  function createParticle(x, y) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.left = x + 'px';
-    particle.style.top = y + 'px';
-    document.body.appendChild(particle);
-    setTimeout(() => {
-      particle.remove();
-    }, 1000);
-  }
+function sauvegarderPanier() { localStorage.setItem('panier', JSON.stringify(panier)); miseAJourAffichagePanier(); miseAJourCompteur(); }
 
-  function showToast(message, duration = 1800) {
-    const toast = document.getElementById("toastMsg");
-    toast.textContent = message;
-    toast.style.opacity = "1";
-    toast.style.transform = "translateX(-50%) scale(1)";
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transform = "translateX(-50%) scale(0.9)";
-    }, duration);
-  }
+function miseAJourCompteur() { document.getElementById('cartCount').innerText = panier.reduce((s,item)=> s+item.quantite, 0); }
 
-  function saveCart() {
-    localStorage.setItem("eleganceCart", JSON.stringify(cart));
-  }
+function miseAJourAffichagePanier() {
+    const container = document.getElementById('cartItems');
+    const totalSpan = document.getElementById('cartTotal');
+    if(panier.length === 0) { container.innerHTML = '<p style="text-align:center;color:#999;">Votre panier est vide</p>'; totalSpan.innerText = 'Total: 0 Ar'; return; }
+    let html = '', total = 0;
+    panier.forEach(item => {
+        total += item.prixAr * item.quantite;
+        html += `<div class="cart-item"><div class="cart-item-info"><div class="cart-item-title">${item.nom}</div><div class="cart-item-price">${item.prixAr.toLocaleString('fr-MG')} Ar</div><div>Quantité: ${item.quantite}</div></div><button class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button></div>`;
+    });
+    container.innerHTML = html;
+    totalSpan.innerText = `Total: ${total.toLocaleString('fr-MG')} Ar`;
+    document.querySelectorAll('.remove-item').forEach(btn => btn.addEventListener('click', (e) => { supprimerDuPanier(parseInt(btn.dataset.id)); }));
+}
 
-  function loadCart() {
-    const saved = localStorage.getItem("eleganceCart");
-    if (saved) {
-      try {
-        cart = JSON.parse(saved);
-        if (!Array.isArray(cart)) cart = [];
-      } catch(e) { cart = []; }
-    } else {
-      cart = [];
-    }
-    updateCartUI();
-  }
+function ajouterAuPanier(robe) {
+    const existant = panier.find(p => p.id === robe.id);
+    if(existant) existant.quantite++;
+    else panier.push({...robe, quantite: 1});
+    sauvegarderPanier();
+    toastMsg(`✨ ${robe.nom} ajoutée au panier`);
+}
 
-  function addToCart(productId, event) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
+function supprimerDuPanier(id) { panier = panier.filter(p => p.id !== id); sauvegarderPanier(); toastMsg('Article retiré'); }
 
-    // Créer particule au clic
-    if (event) {
-      createParticle(event.clientX, event.clientY);
-    }
+function toastMsg(msg) { const t = document.getElementById('toastMsg'); t.textContent = msg; t.style.opacity = '1'; setTimeout(()=> t.style.opacity='0', 2000); }
 
-    const existing = cart.find(item => item.id === productId);
-    if (existing) {
-      existing.quantity += 1;
-      showToast(`📦 ${product.name} ×${existing.quantity}`, 1000);
-    } else {
-      cart.push({ id: product.id, quantity: 1, product: { ...product } });
-      showToast(`✨ ${product.name} ajouté au panier`, 1000);
-    }
-    saveCart();
-    updateCartUI();
+function genererCarte(r) { return `<div class="carte-robe"><img src="${r.image}" alt="${r.nom}"><h3>${r.nom}</h3><div class="prix">${r.prixAr.toLocaleString('fr-MG')} Ar</div><button class="btn-acheter" data-id="${r.id}" data-nom="${r.nom}" data-prix="${r.prixAr}">Ajouter au panier 🛒</button></div>`; }
 
-    const cartIconDiv = document.getElementById("cartIcon");
-    cartIconDiv.style.transform = "scale(1.07)";
-    setTimeout(() => { if(cartIconDiv) cartIconDiv.style.transform = ""; }, 180);
-    
-    // Animation du compteur
-    const cartCount = document.getElementById("cartCount");
-    cartCount.classList.add('pulse');
-    setTimeout(() => cartCount.classList.remove('pulse'), 500);
-  }
+function afficherHighlights() { document.getElementById('accueil-highlights').innerHTML = robes.filter(r=>r.highlight).map(genererCarte).join(''); }
+function afficherTous() { document.getElementById('all-products-grid').innerHTML = robes.map(genererCarte).join(''); }
+function afficherOffres() { document.getElementById('offre-produits').innerHTML = robes.filter(r=>r.offre).map(genererCarte).join(''); }
 
-  function updateQuantity(productId, delta) {
-    const idx = cart.findIndex(item => item.id === productId);
-    if (idx === -1) return;
-    const newQty = cart[idx].quantity + delta;
-    if (newQty <= 0) {
-      const removedName = cart[idx].product.name;
-      cart.splice(idx, 1);
-      showToast(`🗑️ ${removedName} retiré`, 900);
-    } else {
-      cart[idx].quantity = newQty;
-      showToast(`🔄 Quantité mise à jour : ${cart[idx].product.name} ×${newQty}`, 800);
-    }
-    saveCart();
-    updateCartUI();
-  }
+function attacherEvents() { document.querySelectorAll('.btn-acheter').forEach(btn => { btn.removeEventListener('click', handler); btn.addEventListener('click', handler); }); }
+function handler(e) { const id = parseInt(e.currentTarget.dataset.id); const robe = robes.find(r=>r.id===id); if(robe) ajouterAuPanier(robe); }
 
-  function removeItem(productId) {
-    const removedItem = cart.find(item => item.id === productId);
-    if (removedItem) {
-      cart = cart.filter(item => item.id !== productId);
-      showToast(`❌ ${removedItem.product.name} supprimé`, 900);
-      saveCart();
-      updateCartUI();
-    }
-  }
-
-  function updateCartUI() {
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartCountSpan = document.getElementById("cartCount");
-    if (cartCountSpan) cartCountSpan.innerText = totalItems;
-
-    const cartItemsContainer = document.getElementById("cartItemsList");
-    const cartTotalSpan = document.getElementById("cartTotalPrice");
-
-    if (!cartItemsContainer) return;
-
-    if (cart.length === 0) {
-      cartItemsContainer.innerHTML = `<div class="empty-cart">🛍️ Votre panier est vide<br>✨ Ajoutez des articles tendance ✨</div>`;
-      if (cartTotalSpan) cartTotalSpan.innerText = "0 AR";
-      return;
-    }
-
-    let itemsHTML = "";
+// Générer le message WhatsApp avec le récapitulatif de la commande
+function genererMessageWhatsApp() {
+    if(panier.length === 0) return null;
+    let message = "🛍️ *MA COMMANDE Robe & Élégance* 🛍️%0A%0A";
     let total = 0;
+    panier.forEach(item => {
+        const prixTotalItem = item.prixAr * item.quantite;
+        total += prixTotalItem;
+        message += `▪️ ${item.nom} x${item.quantite} : ${prixTotalItem.toLocaleString('fr-MG')} Ar%0A`;
+    });
+    message += `%0A📦 *TOTAL : ${total.toLocaleString('fr-MG')} Ar*%0A%0A`;
+    message += `📍 Livraison : Madagascar%0A`;
+    message += `💬 Merci de confirmer ma commande !%0A`;
+    return message;
+}
 
-    for (const item of cart) {
-      const prod = item.product;
-      const itemTotal = prod.price * item.quantity;
-      total += itemTotal;
-      itemsHTML += `
-        <div class="cart-item">
-          <img class="cart-item-img" src="${prod.image}" alt="${prod.name}" loading="lazy">
-          <div class="cart-item-details">
-            <div class="cart-item-title">${escapeHtml(prod.name)}</div>
-            <div class="cart-item-price">${formatPrice(itemTotal)} AR</div>
-            <div class="item-quantity">
-              <button class="qty-decr" data-id="${prod.id}">−</button>
-              <span style="min-width: 28px; text-align:center;">${item.quantity}</span>
-              <button class="qty-incr" data-id="${prod.id}">+</button>
-              <button class="remove-item" data-id="${prod.id}">🗑 Supprimer</button>
-            </div>
-          </div>
-        </div>
-      `;
+// Bouton de commande normal (simulation)
+document.getElementById('checkoutBtn')?.addEventListener('click',()=>{ 
+    if(panier.length===0) toastMsg('Panier vide'); 
+    else { 
+        toastMsg('✅ Commande validée ! Un conseiller vous contactera sous 24h.'); 
+        panier=[]; 
+        sauvegarderPanier(); 
+        document.getElementById('cartSidebar').classList.remove('open'); 
+        document.getElementById('overlay').style.display='none'; 
+    } 
+});
+
+// Bouton WhatsApp - envoie directement le récapitulatif
+document.getElementById('whatsappOrderBtn')?.addEventListener('click',()=>{
+    if(panier.length===0) { toastMsg('Panier vide'); return; }
+    const message = genererMessageWhatsApp();
+    if(message) {
+        const numeroWhatsApp = "261341234567"; // Numéro du vendeur (sans le +)
+        const url = `https://wa.me/${numeroWhatsApp}?text=${message}`;
+        window.open(url, '_blank');
+        toastMsg('Redirection vers WhatsApp...');
+        // Optionnel : vider le panier après envoi ?
+        // panier = []; sauvegarderPanier();
+        // document.getElementById('cartSidebar').classList.remove('open');
+        // document.getElementById('overlay').style.display='none';
     }
+});
 
-    cartItemsContainer.innerHTML = itemsHTML;
-    if (cartTotalSpan) cartTotalSpan.innerText = `${formatPrice(total)} AR`;
+// Navigation
+const pages = { accueil:document.getElementById('accueil'), produits:document.getElementById('produits'), offre:document.getElementById('offre'), apropos:document.getElementById('apropos'), contact:document.getElementById('contact') };
+function showPage(id) { Object.values(pages).forEach(p=>p.classList.remove('active-page')); pages[id].classList.add('active-page'); document.querySelectorAll('.nav-link').forEach(l=>{l.classList.toggle('active', l.dataset.page===id);}); if(id==='accueil') afficherHighlights(); if(id==='produits') afficherTous(); if(id==='offre') afficherOffres(); setTimeout(attacherEvents,20); }
+document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',(e)=>{e.preventDefault(); showPage(l.dataset.page);}));
+document.getElementById('heroShopBtn')?.addEventListener('click',()=>showPage('produits'));
+document.getElementById('offreShopBtn')?.addEventListener('click',()=>showPage('produits'));
 
-    document.querySelectorAll('.qty-incr').forEach(btn => {
-      btn.removeEventListener('click', incHandler);
-      btn.addEventListener('click', incHandler);
-    });
-    document.querySelectorAll('.qty-decr').forEach(btn => {
-      btn.removeEventListener('click', decHandler);
-      btn.addEventListener('click', decHandler);
-    });
-    document.querySelectorAll('.remove-item').forEach(btn => {
-      btn.removeEventListener('click', removeHandler);
-      btn.addEventListener('click', removeHandler);
-    });
-  }
+// Panier UI
+document.getElementById('cartIcon').addEventListener('click',()=>{ document.getElementById('cartSidebar').classList.add('open'); document.getElementById('overlay').style.display='block'; });
+document.getElementById('closeCart').addEventListener('click',()=>{ document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('overlay').style.display='none'; });
+document.getElementById('overlay').addEventListener('click',()=>{ document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('overlay').style.display='none'; });
 
-  function incHandler(e) {
-    const id = parseInt(e.currentTarget.dataset.id);
-    updateQuantity(id, 1);
-  }
-  function decHandler(e) {
-    const id = parseInt(e.currentTarget.dataset.id);
-    updateQuantity(id, -1);
-  }
-  function removeHandler(e) {
-    const id = parseInt(e.currentTarget.dataset.id);
-    removeItem(id);
-  }
+// Contact formulaire
+document.getElementById('contactForm')?.addEventListener('submit',(e)=>{ e.preventDefault(); const n=document.getElementById('nom').value.trim(), em=document.getElementById('email').value.trim(), msg=document.getElementById('message').value.trim(); if(!n||!em||!msg) toastMsg('Tous les champs requis'); else if(!em.includes('@')) toastMsg('Email invalide'); else { toastMsg(`Merci ${n} ! Réponse sous 24h.`); e.target.reset(); } });
 
-  function formatPrice(price) {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  }
-
-  function escapeHtml(str) {
-    return str.replace(/[&<>]/g, function(m) {
-      if(m === '&') return '&amp;';
-      if(m === '<') return '&lt;';
-      if(m === '>') return '&gt;';
-      return m;
-    });
-  }
-
-  function renderProducts() {
-    const container = document.getElementById("productsContainer");
-    if (!container) return;
-    container.innerHTML = "";
-    products.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "product-card scroll-reveal";
-      card.innerHTML = `
-        <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300/e2e8f0/475569?text=Accessoire+JPG'">
-        <div class="product-info">
-          <div class="product-title">${escapeHtml(product.name)}</div>
-          <div class="product-price">${formatPrice(product.price)}</div>
-          <button class="add-to-cart" data-id="${product.id}">🛒 Ajouter au panier</button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const id = parseInt(btn.dataset.id);
-        addToCart(id, e);
-        const originalText = btn.innerHTML;
-        btn.innerHTML = "✓ Ajouté !";
-        setTimeout(() => { if(btn) btn.innerHTML = originalText; }, 800);
-      });
-    });
-
-    // Scroll reveal
-    setTimeout(() => {
-      const reveals = document.querySelectorAll('.scroll-reveal');
-      reveals.forEach(el => el.classList.add('revealed'));
-    }, 100);
-  }
-
-  const overlay = document.getElementById("cartOverlay");
-  const cartIconBtn = document.getElementById("cartIcon");
-  const closeCartBtn = document.getElementById("closeCartBtn");
-
-  function openCart() {
-    if (overlay) {
-      overlay.classList.add("open");
-      updateCartUI();
-    }
-  }
-  function closeCart() {
-    if (overlay) overlay.classList.remove("open");
-  }
-
-  if (cartIconBtn) cartIconBtn.addEventListener("click", openCart);
-  if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
-  if (overlay) {
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) closeCart();
-    });
-  }
-
-  const contactFab = document.getElementById("contactFabBtn");
-  const contactPopup = document.getElementById("contactPopup");
-
-  if (contactFab) {
-    contactFab.addEventListener("click", (e) => {
-      e.stopPropagation();
-      contactPopup.classList.toggle("show");
-    });
-  }
-
-  document.addEventListener("click", (e) => {
-    if (contactPopup && contactFab) {
-      if (!contactPopup.contains(e.target) && !contactFab.contains(e.target)) {
-        contactPopup.classList.remove("show");
-      }
-    }
-  });
-
-  const checkoutBtn = document.getElementById("checkoutBtn");
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      if (cart.length === 0) {
-        showToast("🛒 Votre panier est vide, ajoutez des articles !", 1800);
-        return;
-      }
-      const total = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-      if (confirm(`💎 Valider la commande pour un montant total de ${formatPrice(total)} AR ?\nLivraison incluse (simulation).`)) {
-        cart = [];
-        saveCart();
-        updateCartUI();
-        closeCart();
-        showToast("🎉 Commande confirmée ! Merci pour votre achat. 🎉", 2500);
-        updateCartUI();
-      }
-    });
-  }
-
-  function init() {
-    renderProducts();
-    loadCart();
-    document.addEventListener('error', function(e) {
-      if (e.target.tagName === 'IMG') {
-        e.target.src = "https://placehold.co/400x300/e2e8f0/475569?text=Mode+Access+JPG";
-      }
-    }, true);
-  }
-
-  init();
+// Init
+afficherHighlights(); afficherTous(); afficherOffres(); attacherEvents(); miseAJourAffichagePanier(); miseAJourCompteur();
 </script>
 </body>
 </html>
